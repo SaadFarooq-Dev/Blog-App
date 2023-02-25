@@ -1,0 +1,14 @@
+<%= form_with(model: suggestion ,url: post_suggestions_path, local: true) do |form| %>
+  <div class="suggestion-title">
+    <h3><strong><%= form.label :title,class:"form-label" %> </strong></h3>
+    <%= form.text_field :title,class:"form-control" ,required: true %>
+  </div>
+  <div class="suggestion-content">
+    <h3><strong><%= form.label :content ,class:"form-label" %></strong></h3>
+    <%= form.rich_text_area :content ,class:"form-control",required: true %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit "Create Suggestion" ,:class=>"btn btn-dark " %>
+  </div>
+<% end %>

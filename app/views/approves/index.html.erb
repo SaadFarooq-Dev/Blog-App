@@ -1,0 +1,20 @@
+<div class="Pending-Posts-Index">
+  <p id="notice"><%= notice %></p>
+  <h1>Pending Posts</h1>
+  <br>
+  <% @posts.each do |post| %>
+    <div class="row col-md-9 post-index-card">
+      <div class="card mb-4 rounded-3 shadow post-index-card-body">
+        <div class="card-header py-3 text-start">
+          <h4 class="my-0 fw-normal"><%= post.user.name %> </h4>
+          <h6 class="my-0 fw-normal text-muted"><%= post.Published_date.to_formatted_s(:short) %> </h6>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"><%= post.title %></h3>
+          <%= link_to 'Continue Reading', approfe_path(post) ,class:"w-100 btn  btn-outline-dark" %>
+        </div>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

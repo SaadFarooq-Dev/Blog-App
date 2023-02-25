@@ -1,0 +1,20 @@
+<div class="Approve-Posts-Show Posts">
+  <p id="notice"><%= notice %></p>
+  <div class="row post-show-card ">
+    <div class="col-md-12">
+      <div class="card mb-4 rounded-3 shadow">
+        <div class="card-header py-3 text-start">
+          <h4 class="my-0 fw-normal"><%= @post.user_name %> </h4>
+          <h6 class="my-0 fw-normal text-muted"><%= @post.Published_date.to_formatted_s(:short) %> </h6>
+          <h3 class="card-title"><%= @post.title %></h3>
+        </div>
+        <div class="card-body">
+          <p><%= @post.content %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= render 'form', post: @post %>
+  <%= link_to 'Back', approves_path ,class:"btn btn-outline-dark" %>
+</div>
+</div>

@@ -1,0 +1,11 @@
+<%= form_with model: [suggestion,suggestion.replies.build],remote: true do |f| %>
+  <p>
+    <div class="field col-2">
+      <%= f.label :Reply ,class:"form-label" %>
+      <%= f.text_area :body ,class:"form-control",required: true %>
+    </div>
+  </p>
+  <p>
+    <%= f.submit "Submit" ,:class=>"btn btn-outline-secondary " %>
+  </p>
+<% end %>

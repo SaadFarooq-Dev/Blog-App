@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<div class="Reports-index">
+  <h1>Reports</h1>
+  <% @report.each do |report| %>
+    <div class="row card reports-card">
+      <div class="card-body shadow ">
+        <p><strong>Report Made By:</strong></p>
+        <p><strong><%= report.user_name %></strong></p>
+        <p><strong>Reason:</strong></p>
+        <%= report.reason %>
+        <div class="report">
+          <%= link_to 'Details', report ,class:"report-detail-btn btn btn-outline-dark" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

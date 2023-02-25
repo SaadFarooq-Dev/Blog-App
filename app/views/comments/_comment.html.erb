@@ -1,0 +1,25 @@
+<article>
+  <% comment=includes_user_comments(comment) %>
+  <p><%= comment.body %>
+    <br>
+    <% if comment.image.attachment!=nil %>
+      <%= cl_image_tag(comment.image.key) %>
+    <% end %>
+    <small>by <%= comment.user.name %></small>
+  </p>
+  <a href="#" class="comment-form-display btn btn-dark btn-sm">Reply</a>
+  <div class="comment-form">
+    <%= render partial:'comments/form',locals:{post: comment.post,parent: comment} %>
+  </div>
+  <a href="#" class="comment-report-display btn btn-danger btn-sm ">Report</a>
+  <div class="comment-form">
+    <%= render partial:'reports/form',locals:{reportable: comment} %>
+  </div>
+  <div class="like-button text-end" id="like-comment-<%= comment.id %>">
+    <%= render partial:'likes/button',locals:{likeable: comment} %>
+  </div>
+  <hr>
+  <div class="sub-comments">
+    <%= render comment.comments.order_by_id %>
+  </div>
+</article>

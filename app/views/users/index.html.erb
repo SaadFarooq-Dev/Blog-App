@@ -1,0 +1,30 @@
+<div class="User-Index User">
+  <p id="notice"><%= notice %></p>
+  <h1>Name</h1>
+  <h5> <%= @user.name %> </h5>
+  <strong> <%= @user.email %> </strong>
+  <br>
+  <h1>Posts</h1>
+  <% @user.posts.order_posts.each do |post| %>
+    <div class="featurette each-post">
+      <div class="row card reports-card">
+        <div class="card-body shadow ">
+          <div class="col-md-12">
+            <div class="Post-Header-Index d-flex justify-content-between">
+              <h3 class="featurette-heading fw-bold fs-4 lh-1"><%= post.title %></h3>
+              <span class="text-muted"><%= post.created_at.to_formatted_s(:short) %></span>
+            </div>
+            <%= link_to 'Show', post ,class:"btn btn-outline-dark" %>
+            <% if post_user_check(post) %>          |
+              <%= link_to 'Edit', edit_post_path(post) ,class:"btn btn-outline-dark" %>
+              | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-outline-dark" %>
+            <% end %>
+            <div class="text-end">
+              <span class="text-muted"><%= post.status %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

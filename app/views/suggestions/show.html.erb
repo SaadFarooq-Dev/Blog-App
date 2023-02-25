@@ -1,0 +1,28 @@
+<div class="Suggestion-Show Suggestions">
+  <div class="row card reports-card">
+    <div class="card-body shadow ">
+      <p id="notice"><%= notice %></p>
+      <div class="field Post-Header-Show">
+        <h3><%= @suggestion.user.name %> </h3>
+        <span class="text-muted"><%= @suggestion.updated_at.to_formatted_s(:short) %></span>
+      </div>
+      <p class="field">
+        <h4>Title</h4>
+        <%= @suggestion.title %>
+      </p>
+      <div class="suggestion-content img-fluid">
+        <p><%= @suggestion.content %></p>
+      </div>
+      <% if current_user==@suggestion.post.user %>
+        <%= link_to "Update Post",suggestion_path(@suggestion),method: :put ,class:"btn btn-success me-2" %>
+        <%= link_to "Reject",@suggestion,method: :delete ,class:"btn btn-danger me-2",data: { confirm: 'Are you sure?' } %>
+      <% end %>
+      <%= link_to "Back",suggestions_path,class:"btn btn-primary me-2" %>
+    </div>
+  </div>
+  <p>
+    <strong>Replies:</strong>
+    <%= render @suggestion.replies.includes(:user) %>
+    <%= render partial: 'replies/form',locals: {suggestion: @suggestion} %>
+  </p>
+</div>

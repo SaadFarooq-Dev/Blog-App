@@ -1,0 +1,3 @@
+$('#comment-partials').html("<%= escape_javascript render @post.comments.sort_comments.order_by_id %>")
+$('.upload-img').removeAttr('disabled');
+$('.form-control').val('')

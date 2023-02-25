@@ -1,0 +1,5 @@
+<% if @like.likeable.class==Post %>
+  $("#like-post").html("<%= escape_javascript render partial:'likes/button',locals:{likeable: @likeable} %>");
+<% else %>
+  $("#like-comment-<%= @likeable.id %>").html("<%= escape_javascript render partial:'likes/button',locals:{likeable: @likeable} %>");
+<% end %>

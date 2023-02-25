@@ -1,0 +1,42 @@
+<div class="Reports-Show Reports">
+  <p id="notice"><%= notice %></p>
+  <div class="row card reports-card">
+    <div class="card-body shadow ">
+      <div class="field Post-Header-Show">
+        <h3><%= @report.user.name %> </h3>
+        <span class="text-muted"><%= @report.updated_at.to_formatted_s(:short) %></span>
+      </div>
+      <p class="field">
+        <h4>Reason</h4>
+        <%= @report.reason %>
+      </p>
+      <% if @report.reportable.class==Comment %>
+        <div class="report-content">
+          <strong><small>Comment:</small></strong>
+          <p><%= @report.reportable.body %></p>
+          <% if @report.reportable.image.attachment!=nil %>
+            <p><%= cl_image_tag(@report.reportable.image.key) %></p>
+          <% end %>
+          <Strong><small>This Comment Was Made by:</small></Strong>
+          <p><%= @report.reportable.user.name %></p>
+        </div>
+        <%= link_to "Reject",@report,method: :delete ,class:"btn btn-danger me-2",data: { confirm: 'Are you sure?' } %>
+        <%= link_to "Delete Comment",comment_path(@report.reportable),method: :delete ,class:"btn btn-danger me-2",data: { confirm: 'Are you sure?' } %>
+      <% else %>
+        <strong><small>Post:</small></strong>
+        <p class="field">
+          <h4>Title</h4>
+          <%= @report.reportable.title %>
+        </p>
+        <div class="report-post-content img-fluid">
+          <p><%= @report.reportable.content %></p>
+        </div>
+        <Strong><small>This Post Was Made by:</small></Strong>
+        <p><%= @report.reportable.user.name %></p>
+        <%= link_to "Reject",@report,method: :delete ,class:"btn btn-danger me-2",data: { confirm: 'Are you sure?' } %>
+        <%= link_to "Delete Post",post_path(@report.reportable),method: :delete ,class:"btn btn-danger me-2",data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  </div>
+  <hr>
+  <%= link_to "Back",reports_path,class:"btn btn-primary me-2" %>

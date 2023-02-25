@@ -1,0 +1,9 @@
+<form action="/reports" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="report[reportable_id]" value="<%= reportable.id %>">
+  <input type="hidden" name="report[reportable_type]" value="<%= reportable.class.to_s %>">
+  <div class="field col-2">
+    <textarea name="report[reason]" cols="10" rows="3" class="form-control" required="required"></textarea>
+  </div>
+  <input type="submit" value="Report" class="btn btn-outline-secondary">
+</form>

@@ -1,0 +1,15 @@
+<div class="approve-buttons">
+  <div class="approve">
+    <%= form_for(post,url: approfe_path(post), remote: true,local: true, data: { confirm: "You sure?"}) do |f| %>
+      <%= f.hidden_field :status, :value => "approved" %>
+      <%= f.hidden_field :Published_date, :value => Time.zone.now %>
+      <%= f.submit "Approve", class: "btn btn-outline-success" %>
+    <% end %>
+  </div>
+  <div class="reject">
+    <%= form_for(post,url: approfe_path(post), remote: true,local: true, data: { confirm: "You sure?" }) do |f| %>
+      <%= f.hidden_field :status, :value => "not_approved" %>
+      <%= f.hidden_field :Published_date, :value => Time.zone.now %>
+      <%= f.submit "Reject", class: "btn btn-outline-danger" %>
+    <% end %>
+  </div>

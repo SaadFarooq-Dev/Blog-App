@@ -1,0 +1,37 @@
+<div class="">
+  <h1>Suggestions Made For your Post</h1>
+</div>
+<% @user_posts.each do |post| %>
+  <% post.suggestions.all.each do |suggestion| %>
+    <div class="row col-md-9 post-index-card">
+      <div class="card mb-4 rounded-3 shadow post-index-card-body">
+        <div class="card-header py-3 text-start">
+          <h4 class="my-0 fw-normal"><%= suggestion.user_name %> </h4>
+          <h6 class="my-0 fw-normal text-muted"><%= suggestion.created_at.to_formatted_s(:short) %> </h6>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"><%= suggestion.title %></h3>
+          <%= link_to 'Show', suggestion ,class:" w-100 btn btn-outline-dark" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<br>
+<div class="user-suggestions conatiner">
+  <h1>Suggestions You Made</h1>
+  <% current_user.suggestions.each do |suggestion| %>
+    <div class="card shadow col-md-9 rounded-3">
+      <div class="card-header py-3 text-start">
+        <h4 class="my-0 fw-normal"><%= suggestion.user_name %> </h4>
+        <h6 class="my-0 fw-normal text-muted"><%= suggestion.created_at.to_formatted_s(:short) %> </h6>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title"><%= suggestion.title %></h3>
+        <%= link_to 'Show', suggestion ,class:" w-100 btn btn-outline-dark" %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>
+<%= link_to "Back",posts_path,class:"btn btn-primary me-2" %>

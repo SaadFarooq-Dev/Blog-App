@@ -1,0 +1,17 @@
+<%= form_with model: [post,post.comments.build],multipart: true,remote: user_signed_in? do |f| %>
+  <% if !parent.nil? %>
+    <%= f.hidden_field :parent_id, value: parent.id %>
+  <% end %>
+  <p>
+    <div class="field col-2">
+      <%= f.label :Comment ,class:"form-label" %>
+      <%= f.text_area :body ,class:"form-control",required: true %>
+    </div>
+    <div class="field col-3">
+      <%= f.file_field :image ,class:"form-control upload-img",direct_upload: true %>
+    </div>
+  </p>
+  <p>
+    <%= f.submit "Submit" ,:class=>"btn btn-outline-secondary " %>
+  </p>
+<% end %>

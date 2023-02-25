@@ -1,0 +1,39 @@
+<div class="Posts-Show Posts">
+  <p id="notice"><%= notice %></p>
+  <div class="row post-show-card">
+    <div class="col-md-12">
+      <div class="card mb-4 rounded-3 shadow">
+        <div class="card-header py-3 text-start">
+          <h4 class="my-0 fw-normal"><%= @post.user_name %> </h4>
+          <h6 class="my-0 fw-normal text-muted"><%= @post.updated_at.to_formatted_s(:short) %> </h6>
+          <h3 class="card-title"><%= @post.title %></h3>
+          <div class="text-end">
+            <%= link_to 'Suggest', new_post_suggestion_path(@post),class:"btn btn-primary" %>
+          </div>
+        </div>
+        <div class="card-body">
+          <p><%= @post.content %></p>
+          <div class="like-button text-end" id="like-post">
+            <%= render partial:'likes/button',locals:{likeable: @post} %>
+          </div>
+          <a href="#" class="post-report-display btn btn-danger">Report</a>
+          <div class="post-form ">
+            <%= render partial:'reports/form',locals:{reportable:  @post} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comment-section">
+    <p>
+      <%= render partial: 'comments/form',locals:{post: @post,parent: nil} %>
+      <strong>Comments:</strong>
+      <div id="comment-partials">
+        <%= render @post.comments.sort_comments.order_by_id %>
+      </div>
+    </p>
+  </div>
+  <% if post_user_check(@post) %>
+    <%= link_to 'Edit', edit_post_path(@post) ,class:"btn btn-outline-dark" %>
+  <% end %>
+</div>

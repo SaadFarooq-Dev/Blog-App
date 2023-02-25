@@ -1,0 +1,13 @@
+// Place all the styles related to the Approves controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.approve-buttons {
+  display: flex;
+  .approve {
+    margin-right: 10px;
+  }
+  .reject {
+    margin-right: 10px;
+  }
+}

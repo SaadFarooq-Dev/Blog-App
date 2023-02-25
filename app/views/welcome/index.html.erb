@@ -1,0 +1,53 @@
+<div class="post-dashboard">
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Recent Posts</h1>
+      <% @posts.recent_post.each do |post| %>
+        <div class="row card newest-post">
+          <div class="card-body shadow">
+            <p class="col-md-12 fs-5"> <strong><%= post.user.name %> </strong>Published a new Blog:
+              <strong><%= post.title %></strong>  <i class="text-muted fs-6"><%= time_ago_in_words post.updated_at %> ago</i></p>
+            <%= link_to 'Read Blog', post ,class:"btn btn-outline-dark" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="likes-comments-dashboard">
+  <div class="row align-items-md-stretch">
+    <div class="col-md-6">
+      <div class="h-100 p-5 text-bg-dark rounded-3">
+        <h2>Recent Comments</h2>
+        <% @comments.recent_comments.each do |comment| %>
+          <div class="row card newest-post newest-comments">
+            <div class="card-body shadow">
+              <p class="col-md-9 fs-5"> <strong><%= comment.user.name %> </strong>Commented on a Blog:
+                <p class="fs-5"><%= comment.body %> </p>
+                <i class="text-muted fs-6"><%= time_ago_in_words comment.updated_at %> ago</i></p>
+              <%= link_to 'Read Blog', comment.post ,class:"btn btn-outline-light" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-light border rounded-3">
+        <h2>Recent Likes</h2>
+        <% @likes.recent_like.each do |like| %>
+          <div class="row card newest-post ">
+            <div class="card-body shadow">
+              <p class="col-md-9 fs-5"> <strong><%= like.user.name %> </strong>Liked a <%= like.likeable.class %>
+                <i class="text-muted fs-6"><%= time_ago_in_words like.updated_at %> ago</i></p>
+              <% if like.likeable.class== Comment %>
+                <%= link_to 'Read Blog', like.likeable.post, class:"btn btn-outline-dark" %>
+              <% else %>
+                <%= link_to 'Read Blog', like.likeable, class:"btn btn-outline-dark" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

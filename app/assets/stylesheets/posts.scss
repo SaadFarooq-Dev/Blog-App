@@ -1,0 +1,18 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-form {
+  display: none;
+}
+
+.create-new-post {
+  margin: 3vh 0vh;
+}
+.post-edit-buttons {
+  margin: 3vh 0vh;
+  text-align: end;
+}
+.report-button {
+  text-align: right !important;
+}

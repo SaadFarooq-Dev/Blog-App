@@ -1,0 +1,29 @@
+<div class="Posts-Index Posts">
+  <h1>Posts</h1>
+  <br>
+  <div class="create-new-post">
+    <%= link_to 'New Post', new_post_path ,class:"btn btn-dark" %>
+  </div>
+  <% @posts.order_posts.each do |post| %>
+    <div class="row col-md-9 post-index-card">
+      <div class="card mb-4 rounded-3 shadow post-index-card-body">
+        <div class="card-header py-3 text-start">
+          <h4 class="my-0 fw-normal"><%= post.user.name %> </h4>
+          <h6 class="my-0 fw-normal text-muted"><%= post.updated_at.to_formatted_s(:short) %> </h6>
+          <div class="text-end">
+            <% if post_user_check(post) %>
+              |
+              <%= link_to 'Edit', edit_post_path(post) ,class:"btn btn-outline-dark" %>
+              | <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } ,class:"btn btn-outline-dark" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"><%= post.title %></h3>
+          <%= link_to 'Continue Reading', post ,class:"w-100 btn  btn-outline-dark" %>
+        </div>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>
